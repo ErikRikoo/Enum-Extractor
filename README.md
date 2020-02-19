@@ -37,5 +37,5 @@ The haxe code generated for the first extraction will be:
 ```
 
 ## Remarks
-This library allow you to use or patterns(|) but not guards or extractors.
+This library allow you to use or patterns(|) and extractors(=>) but not guards.
 
