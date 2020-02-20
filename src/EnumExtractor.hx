@@ -6,6 +6,8 @@ import haxe.macro.ExprTools;
 import haxe.macro.Context;
 import haxe.macro.Expr;
 
+using Util;
+
 class EnumExtractor {
     private static final metaName = "as";
 
@@ -35,7 +37,7 @@ class EnumExtractor {
     }
 
     private static function buildExtractingExpression(params:Array<Expr>, block:Expr, metaPos:Position):Expr {
-        var conditionnal = params[1];
+        var conditionnal = params[1].removeIfMeta();
 
         switch(params[0]) {
             case macro $value => $pattern:

@@ -6,7 +6,7 @@ You should implement EnumExtractor to be able to use this.
 
 This code ([...] means optionnal):
 ```haxe
-@as(variable => pattern [, conditionnal]) {
+@as(variable => pattern [, [@if] conditionnal]) {
 	// code executed if variable matches pattern
 }
 ```
@@ -50,6 +50,11 @@ class Main implements EnumExtractor {
 		// You can use the optional second argument to have a guard on it
 		@as(a => Value2(v1, v2), v1 > 6) {
 			trace(v1 + v2); // Will not trace anything because v1 = 5 <= 6
+		}
+
+		// You can use @if before the guard to add semantic
+		@as(a => Value2(v1, v2), @if v1 > 2) {
+			trace(v1 + v2); // Traces 15 because v1 > 2
 		}
 	}
 }
