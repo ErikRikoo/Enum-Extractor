@@ -1,4 +1,4 @@
-package;
+package enumExtractor;
 
 
 #if macro
@@ -6,7 +6,7 @@ import haxe.macro.ExprTools;
 import haxe.macro.Context;
 import haxe.macro.Expr;
 
-using Util;
+using enumExtractor.Util;
 
 class EnumExtractor {
     private static final metaName = "as";
@@ -63,7 +63,7 @@ class EnumExtractor {
 }
 
 #else
-@:autoBuild(EnumExtractor.build())
+@:autoBuild(enumExtractor.EnumExtractor.build())
 interface EnumExtractor {
     
 }
