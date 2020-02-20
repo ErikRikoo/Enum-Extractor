@@ -1,6 +1,6 @@
 package ;
 
-import enumExtractor.*;
+import enumExtractor.EnumExtractor;
 
 enum A {
 	Value(v:Int);
@@ -25,6 +25,10 @@ class Main implements EnumExtractor{
 
 		@as(a => Value2(v1, v2), @if v1 > 6) {
 			trace(v1 + v2);
+		}
+
+		@as(a => Value2(v1, v2), v1 > 2) {
+			trace(v1 + v2 + 1);
 		}
 	}
 }

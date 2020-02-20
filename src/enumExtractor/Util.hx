@@ -10,7 +10,7 @@ class Util {
             case macro @if $c:
                 return c;
             default:
-                null;
+                e;
         }
     }
 }
