@@ -7,7 +7,7 @@ import haxe.macro.Context;
 import haxe.macro.Expr;
 
 class EnumExtractor {
-    private static var metaName = "as";
+    private static final metaName = "as";
 
     public static macro function build():Array<Field> {
         var fields:Array<Field> = Context.getBuildFields();
@@ -35,12 +35,21 @@ class EnumExtractor {
     }
 
     private static function buildExtractingExpression(params:Array<Expr>, block:Expr, metaPos:Position):Expr {
+        var conditionnal = params[1];
+
         switch(params[0]) {
             case macro $value => $pattern:
-                var ret = macro switch ($value) {
-                    case $pattern: $block;
-                    default: {}
-                  };
+                var ret = if(conditionnal == null) {
+                    macro switch ($value) {
+                        case $pattern: $block;
+                        default: {}
+                      };
+                } else {
+                    macro switch ($value) {
+                        case $pattern if($conditionnal): $block;
+                        default: {}
+                      };
+                }
                 // trace(ExprTools.toString(ret));
                 return ret;
             case null:

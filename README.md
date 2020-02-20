@@ -28,11 +28,16 @@ class Main implements EnumExtractor {
 		@as(a => Value2(v1, v2)) {
 			trace(v1 + v2); // Traces 15
 		}
+
+		// You can use the optional second argument to have a guard on it
+		@as(a => Value2(v1, v2), v1 > 6) {
+			trace(v1 + v2); // Will not trace anything because v1 = 5 <= 6
+		}
 	}
 }
 ```
 
-The haxe code generated for the last extraction will be:
+The haxe code generated for the third extraction will be:
 ```haxe
     switch(a) {
         case Value2(v1, v2):
@@ -40,7 +45,4 @@ The haxe code generated for the last extraction will be:
         default:
     }
 ```
-
-## Remarks
-This library allow you to use or patterns(|) and extractors(=>) but not guards.
 

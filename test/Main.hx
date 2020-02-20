@@ -18,5 +18,9 @@ class Main implements EnumExtractor {
 		@as(a => Value2(v1, v2)) {
 			trace(v1 + v2);
 		}
+
+		@as(a => Value2(v1, v2), v1 > 6) {
+			trace(v1 + v2);
+		}
 	}
 }
