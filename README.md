@@ -2,6 +2,24 @@
 This library provides sugar syntax to access Enum value for one pattern and do nothing for other patterns.
 
 ## Usage
+You should implement EnumExtractor to be able to use this.
+
+This code ([...] means optionnal):
+```haxe
+@as(variable => pattern [, conditionnal]) {
+	// code executed if variable matches pattern
+}
+```
+Will generate:
+```haxe 
+switch(variable) {
+	case pattern [if(conditionnal)]:
+		// code
+	default:
+}
+```
+
+## Exemples
 If you have an enum like:
 ```haxe
 enum A {
@@ -36,13 +54,3 @@ class Main implements EnumExtractor {
 	}
 }
 ```
-
-The haxe code generated for the third extraction will be:
-```haxe
-    switch(a) {
-        case Value2(v1, v2):
-            trace(v1 + v2);
-        default:
-    }
-```
-
